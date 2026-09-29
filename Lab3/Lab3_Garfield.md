@@ -29,7 +29,9 @@ class Solution {
 
 ## Expalin
     After I look at the problem I choose the appraoch using substring first, because I did not know ".startsWith()" is a thing when doing the lab in recitation. At first I was think I'm gonna check each folder path by path by looking at its length and each path "/x -> /x -> /x" using sub String. It took way too long to implement using subString. After I discover ".startsWith()", things get a lot easier.
+    
 ![Project Screenshot](case_3.png)
+
     Since we already sorted the array, the shorter length folder wwill be at front followed by longer sub folder inside it. So all we need to do is check if the folder after the first one is its sub folder or not. But after I finish implementing it, it gave wrong answer when doing case 3. Looking at case 3 we can see a/b/c and a/b/ca both starts with a/b then .startWith() will think the start with the same folder which causes it removing the a/b/ca folder after a/b/c added to the result. I fix this by adding a "/" when checking with .startsWith() it will check the folder is under a/b/c/ instead of a/b/c.
 
     
