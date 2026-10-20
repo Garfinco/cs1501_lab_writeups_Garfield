@@ -82,16 +82,16 @@ public class LZW {
 
 ## Expalin
 
->After I look at the problem I choose the appraoch using substring first, because I did not know ".startsWith()" is a thing when doing the lab in recitation. At first I was think I'm gonna check each folder path by path by looking at its length and each path "/x -> /x -> /x" using sub String. It took way too long to implement using subString. After I discover ".startsWith()", things get a lot easier.
+The overall idea of the solution is simply checking if the symbol table size "int L" is full nor not, if it is we add the W(width) by one bit.
 
-![Project Screenshot](https://github.com/Garfinco/cs1501_lab_writeups_Garfield/blob/main/Lab3/case%203.png)
-
->Since we already sorted the array, the shorter length folder wwill be at front followed by longer sub folder inside it. So all we need to do is check if the folder after the first one is its sub folder or not. But after I finish implementing it, it gave wrong answer when doing case 3. Looking at case 3 we can see a/b/c and a/b/ca both starts with a/b then .startWith() will think the start with the same folder which causes it removing the a/b/ca folder after a/b/c added to the result. I fix this by adding a "/" when checking with .startsWith() it will check the folder is under a/b/c/ instead of a/b/c.
+Compress and expand both check if we need to increment the width and symbol table for next code word before we adds the current code word in. One problem I ran into is where to put the increment check I still don't understand why I need to put it after I created the current code word and before I put it in the symbol table. The other problem is I forgot to initiallize L and W to 9 in compress since they are global variables.
 
 
 ## Time and Space Complexity
 ### time:
-    O(nlogn) numbers of folder inside the array + the sorting
+    compress O(N^2); cause of subString()
+    expand O(N); number of codewords in symbol table;
 
 ### Space
-    O(n) numbers of folder in array
+    compress size of file and dictionary O(FD);
+    expand size of dictioanry and its reference array O(D);
